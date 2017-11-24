@@ -3,6 +3,7 @@ from pydoc import locate
 from multiprocessing.dummy import Pool as ThreadPool
 import time
 import jsonpickle
+import sys
 
 
 class Task(object):
@@ -46,6 +47,9 @@ class Task(object):
 def marker(driverId, task, taskId, seconds, connection, replyQ):
 
     msg = ReplyMsg(Id=driverId, benchId=taskId, msg='end')
+
+    if seconds == 0:
+        seconds = sys.maxint
 
     end = time.time() + seconds
     while time.time() < end and task.isRunning():
