@@ -4,6 +4,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 import time
 import jsonpickle
 
+
 class Task(object):
 
     def __init__(self, driverId, client, taskId, className):
@@ -47,7 +48,7 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
     msg = ReplyMsg(Id=driverId, benchId=taskId, msg='end')
 
     end = time.time() + seconds
-    while time.time() < end:
+    while time.time() < end and task.isRunning():
         try:
             task.timeStep()
         except Exception as e:
