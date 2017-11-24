@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/HzClient.iml" filepath="$PROJECT_DIR$/.idea/HzClient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/HzPyClient.iml" filepath="$PROJECT_DIR$/.idea/HzPyClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/hzPyClient.iml" filepath="$PROJECT_DIR$/.idea/hzPyClient.iml" />
     </modules>
   </component>
 </project>

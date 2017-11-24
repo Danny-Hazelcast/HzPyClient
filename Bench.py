@@ -1,24 +1,25 @@
 
 
 class Bench(object):
+
     def init(self):
-        raise NotImplementedError("implement this method")
+        raise NotImplementedError("init implement this method")
 
     def timeStep(self):
-        raise NotImplementedError("implement this method")
+        raise NotImplementedError("timeStep implement this method")
 
     def postPhase(self):
-        raise NotImplementedError("implement this method")
+        raise NotImplementedError("postPhase implement this method")
 
     def ignore(self, exception):
-        raise NotImplementedError("implement this method")
+        raise NotImplementedError("ignore implement this method")
 
     def stop(self):
-        raise NotImplementedError("implement this method")
+        raise NotImplementedError("stop implement this method")
 
     def isRunning(self):
-        raise NotImplementedError("implement this method")
+        raise NotImplementedError("isRunning implement this method")
 
-    def setVendorObject(self, vendorObject):
-        raise NotImplementedError("implement this method")
+    def setClient(self, client):
+        raise NotImplementedError("setClient implement this method")
 

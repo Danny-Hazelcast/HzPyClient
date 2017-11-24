@@ -14,12 +14,6 @@ MQ msg out = {"benchId": "put", "error": false, "benchClazz": null, "threadId": 
 MQ msg in = {"taskId":"put","field":"keyDomain","value":"1000","cmd":"SetFieldCmd"}
 MQ msg out = {"benchId": "put", "error": false, "benchClazz": null, "threadId": null, "msg": "set keyDomain to 1000", "id": "PyClient2HZ"}
 
-MQ msg in = {"taskId":"put","field":"valueSize","value":"101","cmd":"SetFieldCmd"}
-MQ msg out = {"benchId": "put", "error": false, "benchClazz": null, "threadId": null, "msg": "set valueSize to 101", "id": "PyClient2HZ"}
-
-MQ msg in = {"taskId":"put","field":"name","value":"mapBak1","cmd":"SetFieldCmd"}
-MQ msg out = {"benchId": "put", "error": false, "benchClazz": null, "threadId": null, "msg": "set name to mapBak1", "id": "PyClient2HZ"}
-
 MQ msg in = {"taskId":"put","cmd":"InitCmd"}
 MQ msg out = {"benchId": "put", "error": false, "benchClazz": null, "threadId": null, "msg": "init", "id": "PyClient2HZ"}
 

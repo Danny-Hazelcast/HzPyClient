@@ -1,8 +1,9 @@
-import time
 import os
 import socket
+import time
 from ReplyMsg import ReplyMsg
 from MqListner import *
+from BenchManager import *
 
 
 class Controler(object):
@@ -13,6 +14,7 @@ class Controler(object):
         self.queueId = None
         self.Id = None
         self.version = None
+        self.tasks = None
 
     def start(self):
         self.conn = stomp.Connection([(self.brokerIP, 61613)])
@@ -25,29 +27,46 @@ class Controler(object):
             time.sleep(1)
 
     def init(self):
-        raise NotImplementedError("implement this method")
+        raise NotImplementedError("Controler init implement this method")
+
+    def getClient(self):
+        raise NotImplementedError("Controler getClient implement this method")
 
     def bootClient(self, replyQ):
-        msg = ReplyMsg(Id=self.Id)
+        msg = ReplyMsg(Id=self.Id, msg='started on '+socket.gethostbyname(socket.gethostname())+" "+str(os.getpid())+" "+self.version )
         try:
             self.init()
-            msg.msg='started on '+socket.gethostbyname(socket.gethostname())+" "+str(os.getpid())+" "+self.version
+            self.tasks = BenchManager(self.Id, self.getClient())
         except Exception as e:
             msg.error = True
-            msg.msg = e.message +" version "+ self.version
-
+            msg.msg = e.message
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def loadBench(self, replyQ, taskId, className):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='load')
+        try:
+            self.tasks.loadBench(taskId, className)
+        except Exception as e:
+            msg.error = True
+            msg.msg = e.message
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setThreadCount(self, replyQ, taskId, threadCount):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='set'+str(threadCount)+" threads")
+        try:
+            self.tasks.setThreadCount(taskId, threadCount)
+        except Exception as e:
+            msg.error = True
+            msg.msg = e.message
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setField(self, replyQ, taskId, field, value):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='set '+field+' to '+value)
+        try:
+            self.tasks.setField(taskId, field, value)
+        except Exception as e:
+            msg.error = True
+            msg.msg = e.message
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setBenchAttr(self, replyQ, taskId, type, intervalNanos, recordException, outFile):
@@ -56,6 +75,12 @@ class Controler(object):
 
     def initBench(self, replyQ, taskId):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='init')
+        try:
+            self.tasks.init()
+        except Exception as e:
+            msg.error = True
+            msg.msg = e.message
+
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def warmupBench(self, replyQ, taskId, seconds):
@@ -63,8 +88,7 @@ class Controler(object):
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def runBench(self, replyQ, taskId, seconds):
-        msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='running')
-        self.sendReply(replyQ=replyQ, msg=msg)
+        self.tasks.run(taskId, seconds, self.conn, replyQ)
 
     def postPhase(self, replyQ, taskId):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='post phase')
