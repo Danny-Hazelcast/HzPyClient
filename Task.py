@@ -53,8 +53,6 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
             task.timeStep()
         except Exception as e:
             msg.setErrorMsg(e.message)
-            with open('exception.txt', 'a') as f:
-                f.write(e.message)
             break
 
     msg = jsonpickle.pickler.encode(msg)

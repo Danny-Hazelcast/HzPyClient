@@ -57,3 +57,5 @@ class ReplyMsg(object):
     def setErrorMsg(self, msg):
         self.error = True
         self.msg = msg
+        with open('exception.txt', 'a') as f:
+            f.write(msg)

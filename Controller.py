@@ -91,7 +91,7 @@ class Controller(object):
             msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
-    def setMetaData(self, replyQ, taskId, metaData):
+    def writeMetaData(self, replyQ, taskId, metaData):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='')
         self.sendReply(replyQ=replyQ, msg=msg)
 

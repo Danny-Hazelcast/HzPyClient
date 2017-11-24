@@ -45,7 +45,7 @@ class MqListener(stomp.ConnectionListener):
             self.controller.postPhase(replyQ, cmd.taskId)
 
         elif cmd.cmd == 'MetaDataCmd':
-            self.controller.setMetaData(replyQ, cmd.taskId, cmd.metaData)
+            self.controller.writeMetaData(replyQ, cmd.taskId, cmd.metaData)
 
         elif cmd.cmd == 'RemoveBenchCmd':
             self.controller.remove(replyQ, cmd.taskId)
