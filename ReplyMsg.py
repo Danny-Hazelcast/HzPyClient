@@ -54,3 +54,6 @@ class ReplyMsg(object):
         self.error = error
         self.msg = msg
 
+    def setErrorMsg(self, msg):
+        self.error = True
+        self.msg = msg

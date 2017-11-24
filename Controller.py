@@ -3,10 +3,10 @@ import socket
 import time
 from ReplyMsg import ReplyMsg
 from MqListner import *
-from BenchManager import *
+from TaskMaster import *
 
 
-class Controler(object):
+class Controller(object):
 
     def __init__(self):
         self.conn = None
@@ -27,28 +27,26 @@ class Controler(object):
             time.sleep(1)
 
     def init(self):
-        raise NotImplementedError("Controler init implement this method")
+        raise NotImplementedError("Controller init implement this method")
 
     def getClient(self):
-        raise NotImplementedError("Controler getClient implement this method")
+        raise NotImplementedError("Controller getClient implement this method")
 
     def bootClient(self, replyQ):
         msg = ReplyMsg(Id=self.Id, msg='started on '+socket.gethostbyname(socket.gethostname())+" "+str(os.getpid())+" "+self.version )
         try:
             self.init()
-            self.tasks = BenchManager(self.Id, self.getClient())
+            self.tasks = TaskMaster(self.Id, self.getClient())
         except Exception as e:
-            msg.error = True
-            msg.msg = e.message
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
-    def loadBench(self, replyQ, taskId, className):
+    def load(self, replyQ, taskId, className):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='load')
         try:
-            self.tasks.loadBench(taskId, className)
+            self.tasks.load(taskId, className)
         except Exception as e:
-            msg.error = True
-            msg.msg = e.message
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setThreadCount(self, replyQ, taskId, threadCount):
@@ -56,8 +54,7 @@ class Controler(object):
         try:
             self.tasks.setThreadCount(taskId, threadCount)
         except Exception as e:
-            msg.error = True
-            msg.msg = e.message
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setField(self, replyQ, taskId, field, value):
@@ -65,45 +62,53 @@ class Controler(object):
         try:
             self.tasks.setField(taskId, field, value)
         except Exception as e:
-            msg.error = True
-            msg.msg = e.message
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setBenchAttr(self, replyQ, taskId, type, intervalNanos, recordException, outFile):
-        msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='set bench attributes')
+        msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='')
         self.sendReply(replyQ=replyQ, msg=msg)
 
-    def initBench(self, replyQ, taskId):
+    def initTasks(self, replyQ, taskId):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='init')
         try:
             self.tasks.init()
         except Exception as e:
-            msg.error = True
-            msg.msg = e.message
-
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
-    def warmupBench(self, replyQ, taskId, seconds):
-        msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='warming')
-        self.sendReply(replyQ=replyQ, msg=msg)
+    def warmup(self, replyQ, taskId, seconds):
+        self.tasks.run(taskId, seconds, self.conn, replyQ)
 
-    def runBench(self, replyQ, taskId, seconds):
+    def run(self, replyQ, taskId, seconds):
         self.tasks.run(taskId, seconds, self.conn, replyQ)
 
     def postPhase(self, replyQ, taskId):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='post phase')
+        try:
+            self.tasks.postPhase(taskId)
+        except Exception as e:
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setMetaData(self, replyQ, taskId, metaData):
-        msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='meta data')
+        msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='')
         self.sendReply(replyQ=replyQ, msg=msg)
 
-    def removeBench(self, replyQ, taskId):
+    def remove(self, replyQ, taskId):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='remove bench')
+        try:
+            self.tasks.remove(taskId)
+        except Exception as e:
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
-    def stopBench(self, replyQ, taskId):
+    def stop(self, replyQ, taskId):
         msg = ReplyMsg(Id=self.Id, benchId=taskId, msg='stopping')
+        try:
+            self.tasks.stop(taskId)
+        except Exception as e:
+            msg.setErrorMsg(e.message)
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def sendReply(self, replyQ, msg):

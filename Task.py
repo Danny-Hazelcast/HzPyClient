@@ -4,7 +4,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 import time
 import jsonpickle
 
-class BenchContainer(object):
+class Task(object):
 
     def __init__(self, driverId, client, taskId, className):
         self.driverId = driverId
@@ -21,17 +21,25 @@ class BenchContainer(object):
             self.tasks[i].setClient(self.client)
 
     def init(self):
-        for o in self.tasks:
-            o.init()
+        for t in self.tasks:
+            t.init()
 
     def setField(self, field, val):
-        for o in self.tasks:
-            setattr(o, field, val)
+        for t in self.tasks:
+            setattr(t, field, val)
 
     def run(self, seconds, connection, replyQ):
         pool = ThreadPool(len(self.tasks))
         for t in self.tasks:
             pool.apply_async(marker, (self.driverId, t, self.taskId, seconds, connection, replyQ))
+
+    def postPhase(self):
+        for t in self.tasks:
+            t.postPhase()
+
+    def stop(self):
+        for t in self.tasks:
+            t.stop()
 
 
 def marker(driverId, task, taskId, seconds, connection, replyQ):

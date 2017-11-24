@@ -21,7 +21,7 @@ class MqListener(stomp.ConnectionListener):
             self.controller.bootClient(replyQ)
 
         elif cmd.cmd == 'LoadCmd':
-            self.controller.loadBench(replyQ, cmd.taskId, cmd.className)
+            self.controller.load(replyQ, cmd.taskId, cmd.className)
 
         elif cmd.cmd == 'ThreadCountCmd':
             self.controller.setThreadCount(replyQ, cmd.taskId, cmd.threadCount)
@@ -33,13 +33,13 @@ class MqListener(stomp.ConnectionListener):
             self.controller.setBenchAttr(replyQ, cmd.taskId, cmd.type, cmd.intervalNanos, cmd.recordException, cmd.outFile)
 
         elif cmd.cmd == 'InitCmd':
-            self.controller.initBench(replyQ, cmd.taskId)
+            self.controller.initTasks(replyQ, cmd.taskId)
 
         elif cmd.cmd == 'WarmupCmd':
-            self.controller.warmupBench(replyQ, cmd.taskId, cmd.seconds)
+            self.controller.warmup(replyQ, cmd.taskId, cmd.seconds)
 
         elif cmd.cmd == 'RunBenchCmd':
-            self.controller.runBench(replyQ, cmd.taskId, cmd.seconds)
+            self.controller.run(replyQ, cmd.taskId, cmd.seconds)
 
         elif cmd.cmd == 'PostPhaseCmd':
             self.controller.postPhase(replyQ, cmd.taskId)
@@ -48,10 +48,10 @@ class MqListener(stomp.ConnectionListener):
             self.controller.setMetaData(replyQ, cmd.taskId, cmd.metaData)
 
         elif cmd.cmd == 'RemoveBenchCmd':
-            self.controller.removeBench(replyQ, cmd.taskId)
+            self.controller.remove(replyQ, cmd.taskId)
 
         elif cmd.cmd == 'StopBenchCmd':
-            self.controller.stopBench(replyQ, cmd.taskId)
+            self.controller.stop(replyQ, cmd.taskId)
 
         else:
             raise NotImplementedError(message+" msg not implemented")

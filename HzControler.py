@@ -1,9 +1,9 @@
-import Controler
+import Controller
 import hazelcast
 import logging
 
 
-class HzControler(Controler.Controler):
+class HzControler(Controller.Controller):
 
     def __init__(self, brokerIP, queueId, Id, clusterID, ips=[]):
         self.client = None
