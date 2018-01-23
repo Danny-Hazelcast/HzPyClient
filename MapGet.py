@@ -1,7 +1,7 @@
 import BenchMap
 
 
-class BenchMapPut(BenchMap.BenchMap):
+class MapGet(BenchMap.BenchMap):
 
     def timeStep(self):
-        self.map.put(1, 2)
+        self.map.get(  self.keyDomain)
