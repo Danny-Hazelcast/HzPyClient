@@ -12,6 +12,11 @@ class BenchBase(Bench.Bench):
         self.keyDomain = sys.maxint
         self.ignore = None
 
+
+    def init(self):
+        exceptions = self.ignore.split(":")
+
+
     def stop(self):
         self.running = False
 
