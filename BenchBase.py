@@ -1,6 +1,6 @@
-from random import randint
 import Bench
 import hazelcast
+import sys
 
 
 class BenchBase(Bench.Bench):
@@ -9,7 +9,7 @@ class BenchBase(Bench.Bench):
         self.client = None  # type: hazelcast.HazelcastClient
         self.running = True
         self.name = None
-        self.keyDomain = None
+        self.keyDomain = sys.maxint
         self.ignore = None
 
     def stop(self):
