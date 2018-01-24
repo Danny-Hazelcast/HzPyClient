@@ -7,3 +7,6 @@ class MapGet(BenchMap.BenchMap):
     def timeStep(self):
         k = randint(0, int(self.keyDomain))
         val = self.map.get(k)
+
+        if val is None:
+            raise TypeError
