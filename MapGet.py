@@ -5,5 +5,5 @@ from random import randint
 class MapGet(BenchMap.BenchMap):
 
     def timeStep(self):
-        k = randint(0, self.keyDomain)
+        k = randint(0, int(self.keyDomain))
         val = self.map.get(k)
