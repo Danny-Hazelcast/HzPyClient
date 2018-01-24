@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="128c5f32-40cf-4d6e-9026-10ba3659ca26" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BenchBase.py" afterPath="$PROJECT_DIR$/BenchBase.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MapGet.py" afterPath="$PROJECT_DIR$/MapGet.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Task.py" afterPath="$PROJECT_DIR$/Task.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -51,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Task.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Task.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Task.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="32" column="8" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+            <state relative-caret-position="300">
+              <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -85,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MapGet.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MapGet.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MapGet.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -138,12 +137,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Task.py" />
         <option value="$PROJECT_DIR$/BenchMapSize.py" />
         <option value="$PROJECT_DIR$/HzClient.py" />
         <option value="$PROJECT_DIR$/BenchMap.py" />
         <option value="$PROJECT_DIR$/BenchBase.py" />
         <option value="$PROJECT_DIR$/MapGet.py" />
+        <option value="$PROJECT_DIR$/Task.py" />
       </list>
     </option>
   </component>
@@ -224,24 +223,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="HzControler" />
-              <option name="myItemType" value="com.jetbrains.python.projectView.PyElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hzPyClient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hzPyClient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller.py" />
-              <option name="myItemType" value="com.jetbrains.python.projectView.PyFileNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.jetbrains.python.projectView.PyElementNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -549,7 +530,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516746646763</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="hzPyClient">
+      <created>1516771806614</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1516771806614</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -934,31 +922,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Task.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="32" column="8" lean-forward="false" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TaskMaster.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="174">
           <caret line="25" column="26" lean-forward="false" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="26" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="83" column="22" lean-forward="false" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -994,6 +962,26 @@
           <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="83" column="22" lean-forward="false" selection-start-line="83" selection-start-column="19" selection-end-line="83" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Task.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="59" column="68" lean-forward="false" selection-start-line="59" selection-start-column="68" selection-end-line="59" selection-end-column="68" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

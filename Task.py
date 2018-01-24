@@ -4,6 +4,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 import time
 import jsonpickle
 import sys
+import traceback
 
 
 class Task(object):
@@ -56,7 +57,7 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
         try:
             task.timeStep()
         except Exception as e:
-            msg.setErrorMsg(e.message)
+            msg.setErrorMsg(e.message + " " + traceback.format_exc())
             break
 
     msg = jsonpickle.pickler.encode(msg)
