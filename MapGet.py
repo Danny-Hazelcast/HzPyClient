@@ -8,5 +8,5 @@ class MapGet(BenchMap.BenchMap):
         k = randint(0, int(self.keyDomain)-1)
         val = self.map.get(k)
 
-        if val is None:
-            raise TypeError
+        #if val is None:
+        #    raise TypeError(" ")
