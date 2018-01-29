@@ -1,6 +1,7 @@
 import Bench
 import hazelcast
 import sys
+from pydoc import locate
 
 
 class BenchBase(Bench.Bench):
@@ -13,7 +14,12 @@ class BenchBase(Bench.Bench):
         self.ignore = None
 
     def init(self):
-        exceptions = self.ignore.split(":")
+        names = self.ignore.split(":")
+
+        exceptions = []
+        for name in names:
+            exceptions.append(locate(name))
+        self.ignore = exceptions
 
     def stop(self):
         self.running = False
@@ -26,4 +32,11 @@ class BenchBase(Bench.Bench):
 
     def postPhase(self):
         return
+
+    def ignore(self, exception):
+        for ignored in self.ignore:
+            if isinstance(exception, ignored):
+                return True
+        return False
+
 

@@ -8,4 +8,5 @@ class BenchMap(BenchBase.BenchBase):
         self.map = None
 
     def init(self):
+        super(BenchMap, self).init()
         self.map = self.client.get_map(self.name).blocking()
