@@ -49,6 +49,8 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
 
     msg = ReplyMsg(Id=driverId, benchId=taskId, msg='end')
 
+    print "STARTING "  "at " + time.time()
+
     if seconds == 0:
         seconds = sys.maxint
 
@@ -56,9 +58,10 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
     while time.time() < end and task.isRunning():
         count = 0
         try:
+
             task.timeStep()
             count += 1
-            print "timeStep count" + count + "at "+ time.time()
+            print "timeStep count" + count + "at " + time.time()
         except Exception as e:
             if not task.ignore(e):
                 msg.setErrorMsg(e.message + " timeStep" + traceback.format_exc())
