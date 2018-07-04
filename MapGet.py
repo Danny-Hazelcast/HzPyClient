@@ -15,5 +15,6 @@ class MapGet(BenchMap.BenchMap):
         except hazelcast.exception.HazelcastError as e:
             print e
 
+
         #if val is None:
         #    raise TypeError(" ")
