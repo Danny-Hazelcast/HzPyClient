@@ -46,7 +46,7 @@ class Controller(object):
         try:
             self.tasks.load(taskId, className)
         except Exception as e:
-            msg.setErrorMsg(e.message)
+            msg.setErrorMsg(e.message + " load")
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setThreadCount(self, replyQ, taskId, threadCount):
@@ -54,7 +54,7 @@ class Controller(object):
         try:
             self.tasks.setThreadCount(taskId, threadCount)
         except Exception as e:
-            msg.setErrorMsg(e.message)
+            msg.setErrorMsg(e.message + "setThreadCount")
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setField(self, replyQ, taskId, field, value):
@@ -62,7 +62,7 @@ class Controller(object):
         try:
             self.tasks.setField(taskId, field, value)
         except Exception as e:
-            msg.setErrorMsg(e.message)
+            msg.setErrorMsg(e.message + " setField")
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def setBenchAttr(self, replyQ, taskId, type, intervalNanos, recordException, outFile):
@@ -74,7 +74,7 @@ class Controller(object):
         try:
             self.tasks.init()
         except Exception as e:
-            msg.setErrorMsg(e.message)
+            msg.setErrorMsg(e.message + " init")
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def warmup(self, replyQ, taskId, seconds):
@@ -88,7 +88,7 @@ class Controller(object):
         try:
             self.tasks.postPhase(taskId)
         except Exception as e:
-            msg.setErrorMsg(e.message)
+            msg.setErrorMsg(e.message + " post phase")
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def writeMetaData(self, replyQ, taskId, metaData):
@@ -100,7 +100,7 @@ class Controller(object):
         try:
             self.tasks.remove(taskId)
         except Exception as e:
-            msg.setErrorMsg(e.message)
+            msg.setErrorMsg(e.message + " remove ")
         self.sendReply(replyQ=replyQ, msg=msg)
 
     def stop(self, replyQ, taskId):
