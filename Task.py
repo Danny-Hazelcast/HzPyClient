@@ -60,7 +60,6 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
     while time.time() < end and task.isRunning():
         count = 0
         try:
-
             task.timeStep()
             count += 1
             #print "timeStep count " + count + " at " + time.time()
