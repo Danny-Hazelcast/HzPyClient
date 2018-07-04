@@ -58,6 +58,7 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
             task.timeStep()
         except Exception as e:
             if not task.ignore(e):
+                print "timeStep Exception" + e
                 msg.setErrorMsg(e.message + " " + traceback.format_exc())
                 break
 

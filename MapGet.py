@@ -1,5 +1,5 @@
 
-import hazelcast
+import hazelcast.exception
 import hazelcast.exception
 
 import BenchMap
