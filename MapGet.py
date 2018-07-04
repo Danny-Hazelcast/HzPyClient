@@ -14,6 +14,7 @@ class MapGet(BenchMap.BenchMap):
             val = self.map.get(k)
         except hazelcast.exception.HazelcastError as e:
             print e
+            pass
 
 
         #if val is None:
