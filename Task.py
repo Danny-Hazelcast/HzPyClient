@@ -34,8 +34,9 @@ class Task(object):
     def run(self, seconds, connection, replyQ):
         pool = ThreadPool(len(self.tasks))
         for t in self.tasks:
-            print "starting multi process"
-            pool.apply_async(marker, (self.driverId, t, self.taskId, seconds, connection, replyQ))
+            #print "starting multi process"
+            #pool.apply_async(marker, (self.driverId, t, self.taskId, seconds, connection, replyQ))
+            marker(self.driverId, t, self.taskId, seconds, connection, replyQ)
 
     def postPhase(self):
         for t in self.tasks:
