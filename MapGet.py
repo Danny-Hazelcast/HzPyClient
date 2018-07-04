@@ -12,7 +12,7 @@ class MapGet(BenchMap.BenchMap):
         k = randint(0, int(self.keyDomain) - 1)
         try:
             val = self.map.get(k)
-        except hazelcast.exception.HazelcastError as e:
+        except hazelcast.HazelcastError as e:
             print e
             pass
 
