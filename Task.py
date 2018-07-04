@@ -34,6 +34,7 @@ class Task(object):
     def run(self, seconds, connection, replyQ):
         pool = ThreadPool(len(self.tasks))
         for t in self.tasks:
+            print "starting multi process"
             pool.apply_async(marker, (self.driverId, t, self.taskId, seconds, connection, replyQ))
 
     def postPhase(self):
@@ -49,7 +50,7 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
 
     msg = ReplyMsg(Id=driverId, benchId=taskId, msg='end')
 
-    print "STARTING "  "at " + time.time()
+    print "starting marker at " + time.time()
 
     if seconds == 0:
         seconds = sys.maxint
@@ -61,7 +62,8 @@ def marker(driverId, task, taskId, seconds, connection, replyQ):
 
             task.timeStep()
             count += 1
-            print "timeStep count" + count + "at " + time.time()
+            print "timeStep count " + count + " at " + time.time()
+
         except Exception as e:
             if not task.ignore(e):
                 msg.setErrorMsg(e.message + " timeStep" + traceback.format_exc())
